@@ -1,0 +1,8 @@
+name: erp
+description: |
+  Application ERP du SAU
+version: 0.1.0
+category: Applications
+maintainer: Leonard TAVAE
+license: MIT
+projectURL: https://gitlab.gov.pf/rancher/erp
