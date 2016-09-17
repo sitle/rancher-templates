@@ -8,7 +8,7 @@ services:
       POSTGRES_PASSWORD: password
 
   erp:
-    image: sipf/erp
+    image: registry.gov.pf/docker/erp
     links:
       - database
     ports:
