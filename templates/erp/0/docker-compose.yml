@@ -10,5 +10,4 @@ erp:
   links:
     - database
   ports:
-    #- ${public_port}:8081
-    - 8081
+    - ${public_port}:8081
