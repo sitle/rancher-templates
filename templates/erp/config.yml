@@ -1,7 +1,7 @@
-name: SIPF
+name: SAU-ERP
 description: |
-  Application du gouvernement de la PF
-version: 0.1.1
+  Application du SAU
+version: 0.1.2
 category: Applications
 maintainer: Leonard TAVAE
 license: MIT
