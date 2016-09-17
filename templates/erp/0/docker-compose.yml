@@ -1,15 +1,14 @@
-version: '2'
-services:
-  database:
-    image: registry.gov.pf/docker/postgres
-    environment:
-      POSTGRES_DB: erp
-      POSTGRES_USER: erp
-      POSTGRES_PASSWORD: password
+database:
+  image: registry.gov.pf/docker/postgres
+  environment:
+    POSTGRES_DB: erp
+    POSTGRES_USER: erp
+    POSTGRES_PASSWORD: password
 
-  erp:
-    image: registry.gov.pf/docker/erp
-    links:
-      - database
-    ports:
-      ${public_port}:8081
+erp:
+  image: registry.gov.pf/docker/erp
+  links:
+    - database
+  ports:
+    #- ${public_port}:8081
+    - 8081
