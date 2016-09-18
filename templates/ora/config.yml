@@ -1,0 +1,8 @@
+name: DAS-ORA
+description: |
+  Gestion des dossiers et attributions du régime de solidarité territorial
+version: 0.1.2
+category: Applications
+maintainer: Leonard TAVAE
+license: MIT
+projectURL: https://github.com/sitle/rancher-templates

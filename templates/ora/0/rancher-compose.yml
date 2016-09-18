@@ -1,0 +1,33 @@
+.catalog:
+  name: "SIPF"
+  version: "0.1.2"
+  description: "Application du gouvernement de la PF"
+  uuid: "ora-0.1.2-201609-1"
+  minimum_rancher_version: v1.1.3
+  questions: 
+    - variable: public_port
+      description: "Public port to expose the service"
+      label: "Port public"
+      type: "int"
+      required: true
+      default: 8081
+
+database:
+  scale: 1
+  health_check:
+    port: 5432
+    interval: 5000
+    unhealthy_threshold: 3
+    strategy: recreate
+    response_timeout: 5000
+    healthy_threshold: 3
+
+ora:
+  scale: 1
+  health_check:
+    port: 8081
+    interval: 5000
+    unhealthy_threshold: 3
+    strategy: recreate
+    healthy_threshold: 3
+    response_timeout: 5000

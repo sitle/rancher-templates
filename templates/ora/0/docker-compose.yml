@@ -1,0 +1,14 @@
+database:
+  image: registry.gov.pf/docker/mysql
+  environment:
+    MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+    MYSQL_DATABASE: ora
+    MYSQL_USER: ora
+    MYSQL_PASSWORD: password
+
+ora:
+  image: sipf/ora
+  links:
+    - database
+  ports:
+    - ${public_port}:8081
