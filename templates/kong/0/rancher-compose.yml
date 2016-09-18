@@ -14,13 +14,6 @@
 
 kong-database:
   scale: 1
-  health_check:
-    port: 9402
-    interval: 5000
-    unhealthy_threshold: 3
-    strategy: recreate
-    response_timeout: 5000
-    healthy_threshold: 3
 
 kong:
   scale: 1
