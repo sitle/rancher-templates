@@ -16,4 +16,4 @@ kong:
 kong-dashboard:
   image: pgbi/kong-dashboard
   ports:
-    - 8080:8080
+    - ${public_port}:8080
