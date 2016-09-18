@@ -1,0 +1,20 @@
+kong-database:
+  image: registry.gov.pf/docker/cassandra:2.2
+
+kong:
+  image: registry.gov.pf/docker/kong
+  restart: on-failure
+  environment:
+    KONG_DATABASE: cassandra
+    KONG_CASSANDRA_CONTACT_POINTS: kong-database
+    KONG_PG_HOST: kong-database
+  ports:
+    - 8000:8000
+    - 8001:8001
+  links:
+    - kong-database:kong-database
+
+kong-dashboard:
+  image: pgbi/kong-dashboard
+  ports:
+    - 8080:8080

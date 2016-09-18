@@ -1,0 +1,8 @@
+name: SIPF-KONG
+description: |
+ Open-Source API Management and Microservice Management 
+version: 0.1.0
+category: Applications
+maintainer: Leonard TAVAE
+license: MIT
+projectURL: https://github.com/sitle/rancher-templates
