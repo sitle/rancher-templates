@@ -1,8 +1,8 @@
 .catalog:
   name: "SIPF"
-  version: "0.1.0"
+  version: "0.1.2"
   description: "Application du gouvernement de la PF"
-  uuid: "kong-0.1.0-201609-1"
+  uuid: "kong-0.1.2-201609-1"
   minimum_rancher_version: v1.1.3
   questions: 
     - variable: public_port
