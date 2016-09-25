@@ -2,15 +2,8 @@
   name: "SIPF"
   version: "0.1.2"
   description: "Application du gouvernement de la PF"
-  uuid: "selenium-0.1.2-201609-1"
+  uuid: "selenium-0.1.3-201609-1"
   minimum_rancher_version: v1.1.3
-  questions: 
-    - variable: node_scale
-      description: "Nombre de node à générer"
-      label: "Nombre de node à générer"
-      type: "int"
-      required: true
-      default: 4
 
 hub:
   scale: 1
@@ -23,7 +16,7 @@ hub:
     healthy_threshold: 3
 
 node:
-  scale: ${node_scale}
+  scale: 4
   health_check:
     port: 4444
     interval: 5000
