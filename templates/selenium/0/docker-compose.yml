@@ -2,6 +2,7 @@ hub:
   ports:
   - 4444:4444/tcp
   image: registry.gov.pf/docker/selenium:hub
+
 node:
   image: registry.gov.pf/docker/selenium:node
   links:
