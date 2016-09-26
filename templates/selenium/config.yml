@@ -1,7 +1,7 @@
 name: SIPF-SELENIUM
 description: |
   Architecture cluster pour effectuer des tests applicatifs
-version: 0.1.3
+version: 0.1.2
 category: Applications
 maintainer: Leonard TAVAE
 license: MIT
