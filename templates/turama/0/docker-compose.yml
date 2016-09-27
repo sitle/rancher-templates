@@ -6,9 +6,9 @@ database:
     POSTGRES_PASSWORD: turama
 
 turama:
-  image: registry.gov.pf/docker/turama
+  image: sipf/turama
   links:
     - database
   ports:
-    - ${public_port}:8080
+    - 8080:8080
 
