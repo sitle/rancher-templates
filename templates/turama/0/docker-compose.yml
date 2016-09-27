@@ -1,0 +1,14 @@
+database:
+  image: registry.gov.pf/docker/postgres
+  environment:
+    POSTGRES_DB: turama
+    POSTGRES_USER: turama
+    POSTGRES_PASSWORD: password
+
+erp:
+  image: registry.gov.pf/docker/turama
+  links:
+    - database
+  ports:
+    - ${public_port}:8080
+
