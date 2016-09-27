@@ -5,7 +5,7 @@ database:
     POSTGRES_USER: turama
     POSTGRES_PASSWORD: password
 
-erp:
+turama:
   image: registry.gov.pf/docker/turama
   links:
     - database
