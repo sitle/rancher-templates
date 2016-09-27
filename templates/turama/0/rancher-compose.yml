@@ -1,6 +1,6 @@
 .catalog:
   name: "SIPF"
-  version: "0.1.2"
+  version: "0.1.4"
   description: "Application du gouvernement de la PF"
   uuid: "turama-0.1.4-201609-1"
   minimum_rancher_version: v1.1.3
