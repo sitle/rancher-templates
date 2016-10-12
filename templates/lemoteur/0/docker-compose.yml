@@ -34,7 +34,6 @@ website:
   - elastic-rails:elasticsearch
   - postgres-rails:postgres-rails
   - cable-rails:cable-rails
-  - redis-rails:redis-rails
   stdin_open: true
 logstash-elk:
   ports:
@@ -61,6 +60,8 @@ cable-rails:
   - '28080'
   - cable/config.ru
   image: registry.gov.pf/blot/lemoteur:cable-rails
+  links:
+  - redis-rails:redis-rails
   stdin_open: true
 elasticsearch-elk:
   labels:
