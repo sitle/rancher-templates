@@ -1,7 +1,7 @@
 postgres-rails:
   environment:
-    POSTGRES_USER: lemoteur
-    POSTGRES_PASSWORD: yourpassword
+    POSTGRES_USER: ${postgres-rails-user}
+    POSTGRES_PASSWORD: ${postgres-rails-password}
   labels:
     io.rancher.container.pull_image: always
     io.rancher.container.hostname_override: container_name
@@ -94,7 +94,7 @@ redis-rails:
   command:
   - redis-server
   - --requirepass
-  - yourpassword
+  - ${redis-rails-password}
   image: redis:3.2-alpine
   stdin_open: true
 
