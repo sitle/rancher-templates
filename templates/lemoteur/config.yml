@@ -1,0 +1,8 @@
+name: lemoteur
+description: |
+  Le moteur de recherche
+version: 0.1.2
+category: Applications
+maintainer: Peter MEUEL
+license: MIT
+projectURL: https://github.com/sitle/rancher-templates

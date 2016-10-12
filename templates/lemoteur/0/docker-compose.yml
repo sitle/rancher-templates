@@ -1,0 +1,91 @@
+postgres-rails:
+  environment:
+    POSTGRES_USER: lemoteur
+    POSTGRES_PASSWORD: yourpassword
+  labels:
+    io.rancher.container.pull_image: always
+    io.rancher.container.hostname_override: container_name
+  tty: true
+  image: postgres:9.5
+  stdin_open: true
+kibana-elk:
+  ports:
+  - 5601:5601/tcp
+  environment:
+    ELASTICSEARCH_URL: http://elasticsearch-elk:9200
+  labels:
+    io.rancher.container.pull_image: always
+    io.rancher.container.hostname_override: container_name
+  tty: true
+  image: registry.gov.pf/blot/lemoteur:kibana-elk
+  stdin_open: true
+website:
+  log_driver: syslog
+  labels:
+    io.rancher.container.pull_image: always
+    io.rancher.container.hostname_override: container_name
+  tty: true
+  log_opt:
+    syslog-address: udp://localhost:5000
+  image: registry.gov.pf/blot/lemoteur:website
+  stdin_open: true
+logstash-elk:
+  ports:
+  - 5000:5000/udp
+  labels:
+    io.rancher.container.pull_image: always
+    io.rancher.container.hostname_override: container_name
+  tty: true
+  command:
+  - -f
+  - /opt/logstash/conf.d/logstash.conf
+  image: registry.gov.pf/blot/lemoteur:logstash-elk
+  stdin_open: true
+cable-rails:
+  labels:
+    io.rancher.container.pull_image: always
+    io.rancher.container.hostname_override: container_name
+  tty: true
+  command:
+  - puma
+  - -p
+  - '28080'
+  - cable/config.ru
+  image: registry.gov.pf/blot/lemoteur:cable-rails
+  links:
+  - elastic-rails:elasticsearch
+  stdin_open: true
+elasticsearch-elk:
+  labels:
+    io.rancher.container.pull_image: always
+    io.rancher.container.hostname_override: container_name
+  tty: true
+  image: registry.gov.pf/blot/lemoteur:elasticsearch-elk
+  stdin_open: true
+elastic-rails:
+  labels:
+    io.rancher.container.pull_image: always
+    io.rancher.container.hostname_override: container_name
+  tty: true
+  image: elasticsearch:2.4
+  stdin_open: true
+lb:
+  ports:
+  - 80:3000
+  tty: true
+  image: rancher/load-balancer-service
+  links:
+  - website:website
+  stdin_open: true
+redis-rails:
+  labels:
+    io.rancher.container.pull_image: always
+    io.rancher.container.hostname_override: container_name
+  tty: true
+  command:
+  - redis-server
+  - --requirepass
+  - yourpassword
+  image: redis:3.2-alpine
+  stdin_open: true
+
