@@ -26,6 +26,7 @@ website:
   labels:
     io.rancher.container.pull_image: always
     io.rancher.container.hostname_override: container_name
+    io.rancher.scheduler.affinity:host_label: logging=true
   tty: true
   log_opt:
     syslog-address: tcp://localhost:5000
@@ -42,6 +43,7 @@ logstash-elk:
   labels:
     io.rancher.container.pull_image: always
     io.rancher.container.hostname_override: container_name
+    io.rancher.scheduler.affinity:host_label: logging=true
   tty: true
   command:
   - -f
