@@ -18,6 +18,8 @@ kibana-elk:
     io.rancher.container.hostname_override: container_name
   tty: true
   image: registry.gov.pf/blot/lemoteur:kibana-elk
+  links:
+  - elasticsearch-elk:elasticsearch-elk
   stdin_open: true
 website:
   log_driver: syslog
@@ -28,6 +30,10 @@ website:
   log_opt:
     syslog-address: udp://localhost:5000
   image: registry.gov.pf/blot/lemoteur:website
+  links:
+  - elastic-rails:elasticsearch
+  - postgres-rails:postgres-rails
+  - redis-rails:redis-rails
   stdin_open: true
 logstash-elk:
   ports:
@@ -40,6 +46,8 @@ logstash-elk:
   - -f
   - /opt/logstash/conf.d/logstash.conf
   image: registry.gov.pf/blot/lemoteur:logstash-elk
+  links:
+  - elasticsearch-elk:elasticsearch-elk
   stdin_open: true
 cable-rails:
   labels:
@@ -52,8 +60,6 @@ cable-rails:
   - '28080'
   - cable/config.ru
   image: registry.gov.pf/blot/lemoteur:cable-rails
-  links:
-  - elastic-rails:elasticsearch
   stdin_open: true
 elasticsearch-elk:
   labels:
