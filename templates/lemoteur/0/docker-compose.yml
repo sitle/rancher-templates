@@ -33,6 +33,7 @@ website:
   links:
   - elastic-rails:elasticsearch
   - postgres-rails:postgres-rails
+  - cable-rails:cable-rails
   - redis-rails:redis-rails
   stdin_open: true
 logstash-elk:
