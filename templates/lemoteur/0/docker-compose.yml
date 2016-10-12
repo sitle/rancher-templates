@@ -28,7 +28,7 @@ website:
     io.rancher.container.hostname_override: container_name
   tty: true
   log_opt:
-    syslog-address: udp://localhost:5000
+    syslog-address: tcp://localhost:5000
   image: registry.gov.pf/blot/lemoteur:website
   links:
   - elastic-rails:elasticsearch
@@ -38,7 +38,7 @@ website:
   stdin_open: true
 logstash-elk:
   ports:
-  - 5000:5000/udp
+  - 5000:5000/tcp
   labels:
     io.rancher.container.pull_image: always
     io.rancher.container.hostname_override: container_name
