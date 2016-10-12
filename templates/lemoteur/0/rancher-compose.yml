@@ -1,6 +1,6 @@
 .catalog:
   name: "lemoteur"
-  version: "0.1.10"
+  version: "0.1.11"
   description: "Le moteur de recherche"
   minimum_rancher_version: v1.1.3
   questions:
@@ -48,7 +48,7 @@ kibana-elk:
     healthy_threshold: 2
     response_timeout: 2000
 website:
-  scale: 3
+  scale: 1
   health_check:
     port: 3000
     interval: 2000
@@ -88,7 +88,7 @@ redis-rails:
     healthy_threshold: 2
     response_timeout: 2000
 lb:
-  scale: 2
+  scale: 1
   load_balancer_config:
     haproxy_config: {}
   health_check:
