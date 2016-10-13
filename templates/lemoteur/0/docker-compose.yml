@@ -80,7 +80,6 @@ elastic-rails:
   tty: true
   image: elasticsearch:2.4
   stdin_open: true
-  volume_driver: convoy-nfs
   volumes:
   - elastic-rails:/var/lib/elasticsearch/data
 lb:
