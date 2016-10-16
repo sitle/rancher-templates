@@ -17,7 +17,7 @@ kibana-elk:
     io.rancher.container.pull_image: always
     io.rancher.container.hostname_override: container_name
   tty: true
-  image: registry.gov.pf/blot/lemoteur:kibana-elk
+  image: registry.gov.pf/${containers_default_project}/lemoteur:kibana-elk
   links:
   - elasticsearch-elk:elasticsearch-elk
   stdin_open: true
@@ -30,7 +30,7 @@ website:
   tty: true
   log_opt:
     syslog-address: tcp://localhost:5000
-  image: registry.gov.pf/blot/lemoteur:website
+  image: registry.gov.pf/${containers_default_project}/lemoteur:website
   links:
   - elastic-rails:elasticsearch
   - postgres-rails:postgres-rails
@@ -48,7 +48,7 @@ logstash-elk:
   command:
   - -f
   - /opt/logstash/conf.d/logstash.conf
-  image: registry.gov.pf/blot/lemoteur:logstash-elk
+  image: registry.gov.pf/${containers_default_project}/lemoteur:logstash-elk
   links:
   - elasticsearch-elk:elasticsearch-elk
   stdin_open: true
@@ -62,7 +62,7 @@ cable-rails:
   - -p
   - '28080'
   - cable/config.ru
-  image: registry.gov.pf/blot/lemoteur:cable-rails
+  image: registry.gov.pf/${containers_default_project}/lemoteur:cable-rails
   links:
   - redis-rails:redis-rails
   stdin_open: true
@@ -71,7 +71,7 @@ elasticsearch-elk:
     io.rancher.container.pull_image: always
     io.rancher.container.hostname_override: container_name
   tty: true
-  image: registry.gov.pf/blot/lemoteur:elasticsearch-elk
+  image: registry.gov.pf/${containers_default_project}/lemoteur:elasticsearch-elk
   stdin_open: true
 elastic-rails:
   labels:
