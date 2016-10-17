@@ -8,19 +8,6 @@ postgres-rails:
   tty: true
   image: postgres:9.5
   stdin_open: true
-kibana-elk:
-  ports:
-  - 5601:5601/tcp
-  environment:
-    ELASTICSEARCH_URL: http://elasticsearch-elk:9200
-  labels:
-    io.rancher.container.pull_image: always
-    io.rancher.container.hostname_override: container_name
-  tty: true
-  image: registry.gov.pf/${containers_default_project}/lemoteur:kibana-elk
-  links:
-  - elasticsearch-elk:elasticsearch-elk
-  stdin_open: true
 website:
   log_driver: syslog
   labels:
@@ -29,28 +16,13 @@ website:
     io.rancher.scheduler.affinity:host_label: logging=true
   tty: true
   log_opt:
-    syslog-address: tcp://localhost:5000
+    syslog-address: udp://${logstash_link}:5000
   image: registry.gov.pf/${containers_default_project}/lemoteur:website
   links:
   - elastic-rails:elasticsearch
   - postgres-rails:postgres-rails
   - cable-rails:cable-rails
   - redis-rails:redis-rails
-  stdin_open: true
-logstash-elk:
-  ports:
-  - 5000:5000/tcp
-  labels:
-    io.rancher.container.pull_image: always
-    io.rancher.container.hostname_override: container_name
-    io.rancher.scheduler.affinity:host_label: logging=true
-  tty: true
-  command:
-  - -f
-  - /opt/logstash/conf.d/logstash.conf
-  image: registry.gov.pf/${containers_default_project}/lemoteur:logstash-elk
-  links:
-  - elasticsearch-elk:elasticsearch-elk
   stdin_open: true
 cable-rails:
   labels:
@@ -65,13 +37,6 @@ cable-rails:
   image: registry.gov.pf/${containers_default_project}/lemoteur:cable-rails
   links:
   - redis-rails:redis-rails
-  stdin_open: true
-elasticsearch-elk:
-  labels:
-    io.rancher.container.pull_image: always
-    io.rancher.container.hostname_override: container_name
-  tty: true
-  image: registry.gov.pf/${containers_default_project}/lemoteur:elasticsearch-elk
   stdin_open: true
 elastic-rails:
   labels:
