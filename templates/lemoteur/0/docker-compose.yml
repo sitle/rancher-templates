@@ -9,20 +9,19 @@ postgres-rails:
   image: postgres:9.5
   stdin_open: true
 website:
-  log_driver: syslog
   labels:
     io.rancher.container.pull_image: always
     io.rancher.container.hostname_override: container_name
     io.rancher.scheduler.affinity:host_label: logging=true
   tty: true
-  log_opt:
-    syslog-address: udp://${logstash_link}:5000
   image: registry.gov.pf/${containers_default_project}/lemoteur:website
   links:
   - elastic-rails:elasticsearch
   - postgres-rails:postgres-rails
   - cable-rails:cable-rails
   - redis-rails:redis-rails
+  external_links:
+  - ${logstash_link}:logstash
   stdin_open: true
 cable-rails:
   labels:
