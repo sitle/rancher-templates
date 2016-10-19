@@ -1,5 +1,6 @@
 postgres-rails:
   environment:
+    POSTGRES_DB: ${postgres_rails_db}
     POSTGRES_USER: ${postgres_rails_user}
     POSTGRES_PASSWORD: ${postgres_rails_password}
   labels:
@@ -17,7 +18,7 @@ website:
   image: registry.gov.pf/${containers_default_project}/lemoteur:website
   links:
   - elastic-rails:elasticsearch
-  - postgres-rails:postgres
+  - postgres:postgres-rails
   - cable-rails:cable-rails
   - redis-rails:redis-rails
   external_links:
