@@ -17,7 +17,7 @@ website:
   image: registry.gov.pf/${containers_default_project}/lemoteur:website
   links:
   - elastic-rails:elasticsearch
-  - postgres-rails:postgres-rails
+  - postgres-rails:postgres
   - cable-rails:cable-rails
   - redis-rails:redis-rails
   external_links:
