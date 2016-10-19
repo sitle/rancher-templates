@@ -1,6 +1,6 @@
 .catalog:
   name: "lemoteur"
-  version: "0.2.1"
+  version: "0.2.2"
   description: "Le moteur de recherche"
   minimum_rancher_version: v1.1.3
   questions:
@@ -9,13 +9,19 @@
       label: "postgres-rails user account"
       type: "string"
       required: true
-      default: "lemoteur"
+      default: "lemoteur_dbu"
     - variable: postgres_rails_password
       description: "Postgres user password to use to connect to postgres-rails database service"
       label: "postgres-rails user password"
       type: "password"
       required: true
-      default: "yourpassword"
+      default: "helloworld"
+    - variable: postgres_rails_db
+      description: "Postgres database name"
+      label: "postgres database name"
+      type: "string"
+      required: true
+      default: "lemoteur_development"
     - variable: redis_rails_password
       description: "Redis password to use to connect to redis-rails key-value service"
       label: "redis-rails user password"
