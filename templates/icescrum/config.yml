@@ -1,0 +1,8 @@
+name: icescrum
+description: |
+  Logiciel icescrum
+version: 0.1.0
+category: Applications
+maintainer: Bryan LOT
+license: MIT
+projectURL: https://github.com/sitle/rancher-templates

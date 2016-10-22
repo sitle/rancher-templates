@@ -1,0 +1,11 @@
+.catalog:
+  name: "icescrum"
+  version: "0.1.0"
+  description: "Logiciel icescrum"
+  minimum_rancher_version: v1.1.3
+
+application:
+  scale: 1
+database:
+  scale: 1
+
