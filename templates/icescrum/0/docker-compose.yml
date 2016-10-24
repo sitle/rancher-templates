@@ -27,8 +27,8 @@ application:
     - 80
   links:
     - database:postgres
-  #volumes:
-  #  - icescrum-app:/root
+  volumes:
+    - icescrum-app:/root
 
 lb:
   image: rancher/load-balancer-service
