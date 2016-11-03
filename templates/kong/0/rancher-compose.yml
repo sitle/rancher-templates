@@ -34,7 +34,7 @@ kong-database:
   scale: 1
 
 kong:
-  scale: 3
+  scale: 1
   health_check:
     port: 8001
     interval: 5000
