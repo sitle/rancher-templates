@@ -1,8 +1,12 @@
 kong-database:
   image: registry.gov.pf/docker/cassandra:2.2
+  labels:
+    io.rancher.scheduler.affinity:host_label: pf.gov.docker.tier=${kong_db_label}
 
 kong:
   image: registry.gov.pf/docker/kong
+  labels:
+    io.rancher.scheduler.affinity:host_label: pf.gov.docker.tier=${kong_api_label}
   restart: on-failure
   environment:
     KONG_DATABASE: cassandra
@@ -14,6 +18,8 @@ kong:
     - kong-database:kong-database
 
 kong-dashboard:
+  labels:
+    io.rancher.scheduler.affinity:host_label: pf.gov.docker.tier=${kong_dashboard_label}
   image: pgbi/kong-dashboard
   ports:
     - ${public_port}:8080
