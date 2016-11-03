@@ -1,6 +1,6 @@
 name: elasticsearch
 description: |
-  elasticsearch 2
+  Elasticsearch. You know, for search
 version: 0.1.0
 category: Applications
 maintainer: Leonard TAVAE

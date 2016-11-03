@@ -3,7 +3,7 @@ elasticsearch-masters:
   labels:
     io.rancher.container.hostname_override: container_name
     io.rancher.sidekicks: elasticsearch-base-master,elasticsearch-datavolume-masters
-    pf.gov.docker.tier: ${elasticsearch_label}
+    io.rancher.scheduler.affinity:host_label: pf.gov.docker.tier=${elasticsearch_label}
   volumes_from:
     - elasticsearch-datavolume-masters
 
@@ -12,7 +12,7 @@ elasticsearch-datavolume-masters:
     elasticsearch.datanode.config.version: '0'
     io.rancher.container.hostname_override: container_name
     io.rancher.container.start_once: true
-    pf.gov.docker.tier: ${elasticsearch_label}
+    io.rancher.scheduler.affinity:host_label: pf.gov.docker.tier=${elasticsearch_label}
   volumes:
     - /usr/share/elasticsearch/data
     - /usr/share/elasticsearch/config
@@ -24,7 +24,7 @@ elasticsearch-base-master:
   labels:
     elasticsearch.master.config.version: '0'
     io.rancher.container.hostname_override: container_name
-    pf.gov.docker.tier: ${elasticsearch_label}
+    io.rancher.scheduler.affinity:host_label: pf.gov.docker.tier=${elasticsearch_label}
   image: elasticsearch:2.2.1
   net: "container:elasticsearch-masters"
   volumes_from:
@@ -38,7 +38,7 @@ elasticsearch-datanodes:
     io.rancher.container.hostname_override: container_name
     io.rancher.sidekicks: elasticsearch-base-datanode,elasticsearch-datavolume-datanode
     io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
-    pf.gov.docker.tier: ${elasticsearch_label}
+    io.rancher.scheduler.affinity:host_label: pf.gov.docker.tier=${elasticsearch_label}
   links:
     - elasticsearch-masters:es-masters
   volumes_from:
@@ -48,7 +48,7 @@ elasticsearch-datavolume-datanode:
     elasticsearch.datanode.config.version: '0'
     io.rancher.container.hostname_override: container_name
     io.rancher.container.start_once: true
-    pf.gov.docker.tier: ${elasticsearch_label}
+    io.rancher.scheduler.affinity:host_label: pf.gov.docker.tier=${elasticsearch_label}
   volumes:
     - /usr/share/elasticsearch/data
     - /usr/share/elasticsearch/config
@@ -59,7 +59,7 @@ elasticsearch-base-datanode:
   labels:
     elasticsearch.datanode.config.version: '0'
     io.rancher.container.hostname_override: container_name
-    pf.gov.docker.tier: ${elasticsearch_label}
+    io.rancher.scheduler.affinity:host_label: pf.gov.docker.tier=${elasticsearch_label}
   image: elasticsearch:2.2.1
   links:
     - elasticsearch-masters:es-masters
@@ -74,7 +74,7 @@ elasticsearch-clients:
   labels:
     io.rancher.container.hostname_override: container_name
     io.rancher.sidekicks: elasticsearch-base-clients,elasticsearch-datavolume-clients
-    pf.gov.docker.tier: ${elasticsearch_label}
+    io.rancher.scheduler.affinity:host_label: pf.gov.docker.tier=${elasticsearch_label}
   links:
     - elasticsearch-masters:es-masters
   volumes_from:
@@ -96,7 +96,7 @@ elasticsearch-base-clients:
   labels:
     elasticsearch.client.config.version: '0'
     io.rancher.container.hostname_override: container_name
-    pf.gov.docker.tier: ${elasticsearch_label}
+    io.rancher.scheduler.affinity:host_label: pf.gov.docker.tier=${elasticsearch_label}
   image: elasticsearch:2.2.1
   volumes_from:
     - elasticsearch-datavolume-clients
@@ -113,7 +113,7 @@ kopf:
     KOPF_ES_SERVERS: 'es-clients:9200'
   labels:
     io.rancher.container.hostname_override: container_name
-    pf.gov.docker.tier: ${kopf_label}
+    io.rancher.scheduler.affinity:host_label: pf.gov.docker.tier=${kopf_label}
   links:
     - elasticsearch-clients:es-clients
 
