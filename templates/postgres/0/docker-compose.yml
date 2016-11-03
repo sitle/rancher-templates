@@ -1,0 +1,10 @@
+postgres:
+  image: "postgres:9.5"
+  labels:
+    io.rancher.scheduler.affinity:host_label: pf.gov.docker.tier=${postgres_label}
+  environment:
+    POSTGRES_DB: "${postgres_db_name}"
+    POSTGRES_USER: "${postgres_db_user}"
+    POSTGRES_PASSWORD: "${postgres_db_password}"
+  volumes:
+    - /var/lib/postgresql/data

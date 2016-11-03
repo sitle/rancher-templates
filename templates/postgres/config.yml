@@ -1,0 +1,8 @@
+name: postgres
+description: |
+ The PostgreSQL object-relational database system provides reliability and data integrity. 
+version: 0.1.0
+category: Applications
+maintainer: Leonard TAVAE
+license: MIT
+projectURL: https://github.com/sitle/rancher-templates
