@@ -1,4 +1,4 @@
-name: SIPF-KONG
+name: kong
 description: |
  Open-Source API Management and Microservice Management 
 version: 0.1.3
