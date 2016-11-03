@@ -1,0 +1,4 @@
+redis:
+  image: redis:alpine
+  labels:
+    io.rancher.scheduler.affinity:host_label: pf.gov.docker.tier=${redis_label}

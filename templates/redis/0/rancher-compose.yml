@@ -1,0 +1,22 @@
+.catalog:
+  name: "redis"
+  version: "0.1.0"
+  description: "Le moteur de recherche"
+  minimum_rancher_version: v1.1.3
+  questions: 
+    - variable: redis_label
+      description: "Label to place redis database server on the right environment."
+      label: "Redis label"
+      type: "string"
+      required: true
+      default: 'backend'
+
+redis:
+  scale: 1
+  health_check:
+    port: 6379
+    interval: 5000
+    unhealthy_threshold: 3
+    strategy: recreate
+    healthy_threshold: 3
+    response_timeout: 5000

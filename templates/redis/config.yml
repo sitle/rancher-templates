@@ -1,0 +1,9 @@
+name: redis
+description: |
+  Redis is an open source (BSD licensed), in-memory data structure store,
+   used as database, cache and message broke
+version: 0.1.0
+category: Applications
+maintainer: Leonard TAVAE
+license: MIT
+projectURL: https://github.com/sitle/rancher-templates
