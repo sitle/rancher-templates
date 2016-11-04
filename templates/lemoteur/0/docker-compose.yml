@@ -4,8 +4,8 @@ webapp:
     io.rancher.container.pull_image: always
     io.rancher.container.hostname_override: container_name
     io.rancher.scheduler.affinity:host_label: pf.gov.docker.tier=${webapp_label}
-    "traefik.backend=webapp"
-    "traefik.frontend.rule=Host:moteur.net.pf"
+    traefik.backend: webapp
+    traefik.frontend.rule: Host:moteur.net.pf
   tty: true
   external_links:
     - ${elasticsearch_link}:elasticsearch
