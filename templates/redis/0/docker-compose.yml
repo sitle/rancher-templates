@@ -1,4 +1,5 @@
 redis:
   image: redis:alpine
+  command: redis-server --requirepass ${redis_password}
   labels:
     io.rancher.scheduler.affinity:host_label: pf.gov.docker.tier=${redis_label}

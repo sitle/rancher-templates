@@ -10,6 +10,12 @@
       type: "string"
       required: true
       default: 'backend'
+    - variable: redis_password
+      description: "Password of the redis server."
+      label: "Redis password"
+      type: "password"
+      required: true
+      default: 'yourpassword'
 
 redis:
   scale: 1
