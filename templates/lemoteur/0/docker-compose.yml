@@ -1,69 +1,24 @@
-postgres-rails:
-  environment:
-    POSTGRES_DB: ${postgres_rails_db}
-    POSTGRES_USER: ${postgres_rails_user}
-    POSTGRES_PASSWORD: ${postgres_rails_password}
+webapp:
+  image: registry.gov.pf/net/lemoteur:website-ref
   labels:
     io.rancher.container.pull_image: always
     io.rancher.container.hostname_override: container_name
+    io.rancher.scheduler.affinity:host_label: pf.gov.docker.tier=${webapp_label}
   tty: true
-  image: postgres:9.5
-  stdin_open: true
-website:
-  labels:
-    io.rancher.container.pull_image: always
-    io.rancher.container.hostname_override: container_name
-    io.rancher.scheduler.affinity:host_label: logging=true
-  tty: true
-  image: registry.gov.pf/${containers_default_project}/lemoteur:website
-  links:
-  - elastic-rails:elasticsearch
-  - postgres-rails:postgres
-  - cable-rails:cable-rails
-  - redis-rails:redis-rails
   external_links:
-  - ${logstash_link}:logstash
-  stdin_open: true
-cable-rails:
-  labels:
-    io.rancher.container.pull_image: always
-    io.rancher.container.hostname_override: container_name
-  tty: true
-  command:
-  - puma
-  - -p
-  - '28080'
-  - cable/config.ru
-  image: registry.gov.pf/${containers_default_project}/lemoteur:cable-rails
-  links:
-  - redis-rails:redis-rails
-  stdin_open: true
-elastic-rails:
-  labels:
-    io.rancher.container.pull_image: always
-    io.rancher.container.hostname_override: container_name
-  tty: true
-  image: elasticsearch:2.4
-  stdin_open: true
-  volumes:
-  - elastic-rails:/var/lib/elasticsearch/data
-lb:
-  ports:
-  - 80:3000
-  tty: true
-  image: rancher/load-balancer-service
-  links:
-  - website:website
-  stdin_open: true
-redis-rails:
-  labels:
-    io.rancher.container.pull_image: always
-    io.rancher.container.hostname_override: container_name
-  tty: true
-  command:
-  - redis-server
-  - --requirepass
-  - ${redis_rails_password}
-  image: redis:3.2-alpine
+    - ${elasticsearch_link}:elasticsearch
+    - ${postgres_link}:postgres
+    - ${redis_link}:redis
+    - ${logstash_link}:logstash
   stdin_open: true
 
+sidekiq:
+  image: registry.gov.pf/net/lemoteur:sidekiq-ref
+  labels:
+    io.rancher.container.pull_image: always
+    io.rancher.container.hostname_override: container_name
+    io.rancher.scheduler.affinity:host_label: pf.gov.docker.tier=${webapp_label}
+  command: bundle exec sidekiq
+  external_links:
+    - ${postgres_link}:postgres
+    - ${redis_link}:redis

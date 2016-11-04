@@ -1,47 +1,41 @@
 .catalog:
   name: "lemoteur"
-  version: "0.2.3"
+  version: "0.2.4"
   description: "Le moteur de recherche"
   minimum_rancher_version: v1.1.3
   questions:
-    - variable: postgres_rails_user
-      description: "Postgres user account to use to connect to postgres-rails database service"
-      label: "postgres-rails user account"
-      type: "string"
-      required: true
-      default: "lemoteur_dbu"
-    - variable: postgres_rails_password
-      description: "Postgres user password to use to connect to postgres-rails database service"
-      label: "postgres-rails user password"
-      type: "password"
-      required: true
-      default: "helloworld"
-    - variable: postgres_rails_db
-      description: "Postgres database name"
-      label: "postgres database name"
-      type: "string"
-      required: true
-      default: "lemoteur_development"
-    - variable: redis_rails_password
-      description: "Redis password to use to connect to redis-rails key-value service"
-      label: "redis-rails user password"
-      type: "password"
-      required: true
-      default: "yourpassword"
-    - variable: containers_default_project
-      description: "Container's default project"
-      label: "Containers project (default: net)"
-      type: "string"
-      required: true
-      default: "net"
     - variable: "logstash_link"
       description: |
         stack/service link or external service link to logstash.
-      default: "logstash/logstash-collector"
+      default: "log-endpoint/logstash-collector"
       required: true
       type: "service"
+    - variable: "elasticsearch_link"
+      description: |
+        stack/service link or external service link to elasticsearch.
+      default: "app-index/elasticsearch-clients"
+      required: true
+      type: "service"
+    - variable: "postgres_link"
+      description: |
+        stack/service link or external service link to postgres.
+      default: "app-database/postgres"
+      required: true
+      type: "service"
+    - variable: "redis_link"
+      description: |
+        stack/service link or external service link to redis.
+      default: "app-cache/redis"
+      required: true
+      type: "service"
+    - variable: webapp_label
+      description: "Label to place the webapp stack on the right environment."
+      label: "webapp label"
+      type: "string"
+      required: true
+      default: 'backend'
 
-website:
+webapp:
   scale: 1
   health_check:
     port: 3000
@@ -49,44 +43,11 @@ website:
     unhealthy_threshold: 3
     healthy_threshold: 2
     response_timeout: 2000
-postgres-rails:
-  scale: 1
-  health_check:
-    port: 5432
-    interval: 2000
-    unhealthy_threshold: 3
-    healthy_threshold: 2
-    response_timeout: 2000
-cable-rails:
+
+sidekiq:
   scale: 1
   health_check:
     port: 28080
-    interval: 2000
-    unhealthy_threshold: 3
-    healthy_threshold: 2
-    response_timeout: 2000
-elastic-rails:
-  scale: 1
-  health_check:
-    port: 9200
-    interval: 2000
-    unhealthy_threshold: 3
-    healthy_threshold: 2
-    response_timeout: 2000
-redis-rails:
-  scale: 1
-  health_check:
-    port: 6379
-    interval: 2000
-    unhealthy_threshold: 3
-    healthy_threshold: 2
-    response_timeout: 2000
-lb:
-  scale: 1
-  load_balancer_config:
-    haproxy_config: {}
-  health_check:
-    port: 42
     interval: 2000
     unhealthy_threshold: 3
     healthy_threshold: 2
