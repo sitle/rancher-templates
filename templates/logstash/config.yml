@@ -1,0 +1,8 @@
+name: logstash
+description: |
+ Logstash is a tool for managing events and logs.
+version: 0.1.0
+category: Applications
+maintainer: Leonard TAVAE
+license: MIT
+projectURL: https://github.com/sitle/rancher-templates
