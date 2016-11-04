@@ -1,0 +1,8 @@
+name: kibana
+description: |
+ Kibana gives shape to any kind of data — structured and unstructured — indexed in Elasticsearch.
+version: 0.1.0
+category: Applications
+maintainer: Leonard TAVAE
+license: MIT
+projectURL: https://github.com/sitle/rancher-templates
