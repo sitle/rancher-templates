@@ -20,5 +20,7 @@ sidekiq:
     io.rancher.scheduler.affinity:host_label: pf.gov.docker.tier=${webapp_label}
   command: bundle exec sidekiq
   external_links:
+    - ${elasticsearch_link}:elasticsearch
     - ${postgres_link}:postgres
     - ${redis_link}:redis
+    - ${logstash_link}:logstash
