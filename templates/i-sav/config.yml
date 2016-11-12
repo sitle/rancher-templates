@@ -1,0 +1,8 @@
+name: DTT-I-SAV
+description: |
+  Application de la DTT pour la situation administrative d'un vehicule.
+version: 0.1.0
+category: Applications
+maintainer: Leonard TAVAE
+license: MIT
+projectURL: https://github.com/sitle/rancher-templates

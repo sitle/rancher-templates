@@ -1,0 +1,4 @@
+i-sav:
+  image: registry.gov.pf/docker/isav
+  ports:
+    - 8080
