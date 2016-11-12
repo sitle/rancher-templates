@@ -2,6 +2,13 @@
   name: "I-SAV"
   version: "0.1.0"
   description: "Prototype I-SAV"
+  questions:
+    - variable: isav_label
+      description: "Label to place isav dashboard on the right environment."
+      label: "isav label"
+      type: "string"
+      required: true
+      default: 'backend'
 
 i-sav:
   scale: 1

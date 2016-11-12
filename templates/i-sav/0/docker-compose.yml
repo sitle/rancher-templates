@@ -1,4 +1,6 @@
 i-sav:
   image: registry.gov.pf/docker/isav
+  labels:
+    io.rancher.scheduler.affinity:host_label: pf.gov.docker.tier=${isav_label}
   ports:
     - 8080
