@@ -5,17 +5,20 @@ mysql:
     MYSQL_USER:          'connfa'
     MYSQL_PASSWORD:      'connfa'
   image: 'mysql:5.6'
-  io.rancher.scheduler.affinity:host_label: pf.gov.docker.tier=${database_label}
+  labels:
+    io.rancher.scheduler.affinity:host_label: pf.gov.docker.tier=${database_label}
   container_name: 'mysql'
 
 redis:
   image: 'redis:3.2-alpine'
-  io.rancher.scheduler.affinity:host_label: pf.gov.docker.tier=${backend_label}
+  labels:
+    io.rancher.scheduler.affinity:host_label: pf.gov.docker.tier=${backend_label}
   container_name: 'redis'
 
 api:
   image: registry.gov.pf/net/connfa-api:latest
-  io.rancher.scheduler.affinity:host_label: pf.gov.docker.tier=${backend_label}
+  labels:
+    io.rancher.scheduler.affinity:host_label: pf.gov.docker.tier=${backend_label}
   container_name: 'api'
   environment:
     WEBROOT: '/var/www/html/public'
