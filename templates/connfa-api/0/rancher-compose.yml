@@ -1,0 +1,17 @@
+.catalog:
+  name: "connfa"
+  version: "0.1.0"
+  description: "Conference API"
+  questions:
+    - variable: "backend_label"
+      label: "backend label"
+      description: "Label to place backend on the right environment."
+      type: "string"
+      default: 'backend'
+      required: true
+    - variable: "database_label"
+      label: "database label"
+      description: "Label to place database on the right environment."
+      type: "string"
+      default: 'database'
+      required: true
