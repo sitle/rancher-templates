@@ -1,4 +1,4 @@
-mysql:
+database:
   environment:
     MYSQL_ROOT_PASSWORD: 'connfa'
     MYSQL_DATABASE:      'connfa'
@@ -7,14 +7,14 @@ mysql:
   image: 'mysql:5.6'
   labels:
     io.rancher.scheduler.affinity:host_label: pf.gov.docker.tier=${database_label}
-  container_name: 'mysql'
+  container_name: 'database'
 
-redis:
+cache:
   image: 'redis:3.2-alpine'
   command: redis-server --requirepass yourpassword
   labels:
     io.rancher.scheduler.affinity:host_label: pf.gov.docker.tier=${backend_label}
-  container_name: 'redis'
+  container_name: 'cache'
 
 api:
   image: registry.gov.pf/net/connfa-api:latest
@@ -27,5 +27,5 @@ api:
   ports:
     - '80:80/tcp'
   links:
-    - mysql:mysql
-    - redis:redis
+    - database:database
+    - cache:cache
