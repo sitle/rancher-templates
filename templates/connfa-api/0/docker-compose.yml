@@ -11,6 +11,7 @@ mysql:
 
 redis:
   image: 'redis:3.2-alpine'
+  command: redis-server --requirepass yourpassword
   labels:
     io.rancher.scheduler.affinity:host_label: pf.gov.docker.tier=${backend_label}
   container_name: 'redis'
