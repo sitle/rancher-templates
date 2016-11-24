@@ -1,0 +1,19 @@
+application:
+  ports:
+  - 8080:80/tcp
+  labels:
+    io.rancher.container.pull_image: always
+  tty: true
+  image: registry.gov.pf/blot/perliprog
+  links:
+  - cache:cache
+  stdin_open: true
+cache:
+  environment:
+    MYSQL_ROOT_PASSWORD: superpassword
+    MYSQL_DATABASE: pradocache
+  labels:
+    io.rancher.container.pull_image: always
+  tty: true
+  image: registry.gov.pf/docker/mysql
+  stdin_open: true

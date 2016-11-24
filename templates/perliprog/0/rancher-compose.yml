@@ -1,0 +1,38 @@
+.catalog:
+  name: "SIPF"
+  version: "0.1.0"
+  description: "Application du gouvernement de la PF"
+  minimum_rancher_version: v1.1.3
+  questions: 
+    - variable: cache_db_name
+      description: "Cache database name"
+      label: "Cache dbname"
+      type: "string"
+      required: true
+      default: "pradocache"
+    - variable: cache_db_password
+      description: "Cache database password"
+      label: "Cache dbpassword"
+      type: "string"
+      required: true
+      default: "superpassword"
+
+application:
+  scale: 1
+  health_check:
+    port: 80
+    interval: 5000
+    unhealthy_threshold: 3
+    strategy: recreate
+    response_timeout: 5000
+    healthy_threshold: 3
+
+cache:
+  scale: 1
+  health_check:
+    port: 3306
+    interval: 5000
+    unhealthy_threshold: 3
+    strategy: recreate
+    healthy_threshold: 3
+    response_timeout: 5000
