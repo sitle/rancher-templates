@@ -10,8 +10,8 @@ application:
   stdin_open: true
 cache:
   environment:
-    MYSQL_ROOT_PASSWORD: superpassword
-    MYSQL_DATABASE: pradocache
+    MYSQL_ROOT_PASSWORD: ${cache_db_password}
+    MYSQL_DATABASE: ${cache_db_name}
   labels:
     io.rancher.container.pull_image: always
   tty: true
