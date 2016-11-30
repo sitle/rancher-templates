@@ -1,0 +1,8 @@
+name: pgweb
+description: |
+ Pgweb is a web-based database browser for PostgreSQL.
+version: 0.1.0
+category: Applications
+maintainer: Leonard TAVAE
+license: MIT
+projectURL: https://github.com/sitle/rancher-templates

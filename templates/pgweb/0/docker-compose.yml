@@ -1,0 +1,7 @@
+pgweb:
+  image: "registry.gov.pf/docker/pgweb"
+  labels:
+    io.rancher.container.pull_image: always
+    io.rancher.scheduler.affinity:host_label: pf.gov.docker.tier=${pgweb_label}
+  ports:
+    - 8081:8081/tcp

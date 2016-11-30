@@ -1,0 +1,22 @@
+.catalog:
+  name: "pgweb"
+  version: "0.1.0"
+  description: "Pgweb is a web-based database browser for PostgreSQL."
+  minimum_rancher_version: v1.1.3
+  questions: 
+    - variable: pgweb_label
+      description: "Label to place pgweb server on the right environment."
+      label: "pgweb label"
+      type: "string"
+      required: true
+      default: 'database'
+
+pgweb:
+  scale: 1
+  health_check:
+    port: 8081
+    interval: 5000
+    unhealthy_threshold: 3
+    strategy: recreate
+    healthy_threshold: 3
+    response_timeout: 5000
