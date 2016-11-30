@@ -4,7 +4,7 @@ application:
   labels:
     io.rancher.container.pull_image: always
   tty: true
-  image: registry.gov.pf/blot/perliprog
+  image: ${perliprog_container}
   links:
   - cache:cache
   stdin_open: true
