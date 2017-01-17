@@ -22,12 +22,6 @@
       type: "string"
       default: 'application'
       required: true
-    - variable: "loadbalancer_label"
-      label: "loadbalancer label"
-      description: "Label to place loadbalancer on the right environment."
-      type: "string"
-      default: 'lb'
-      required: true
 
 version: '2'
 services:
@@ -37,23 +31,3 @@ services:
   application:
     scale: 1
     start_on_create: true
-  reverse:
-    scale: 1
-    start_on_create: true
-    lb_config:
-      certs: []
-      port_rules:
-      - hostname: dev.icescrum.gov.pf
-        path: ''
-        priority: 1
-        protocol: http
-        service: application
-        source_port: 80
-        target_port: 8080
-    health_check:
-      response_timeout: 2000
-      healthy_threshold: 2
-      port: 42
-      unhealthy_threshold: 3
-      interval: 2000
-
