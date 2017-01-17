@@ -20,6 +20,7 @@ services:
     labels:
       io.rancher.container.pull_image: always
       io.rancher.container.hostname_override: container_name
+      io.rancher.scheduler.affinity:host_label: pf.gov.docker.tier=${database_label}
   application:
     image: icescrum/icescrum
     environment:
@@ -37,6 +38,7 @@ services:
     labels:
       io.rancher.container.pull_image: always
       io.rancher.container.hostname_override: container_name
+      io.rancher.scheduler.affinity:host_label: pf.gov.docker.tier=${application_label}
   reverse:
     image: rancher/lb-service-haproxy:v0.4.6
     ports:
@@ -44,3 +46,4 @@ services:
     labels:
       io.rancher.container.agent.role: environmentAdmin
       io.rancher.container.create_agent: 'true'
+      io.rancher.scheduler.affinity:host_label: pf.gov.docker.tier=${loadbalancer_label}
