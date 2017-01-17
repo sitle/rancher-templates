@@ -9,7 +9,7 @@
       label: "Host IP"
       type: "string"
       required: true
-      default: "10.0.0.247"
+      default: "dev.icescrum.gov.pf"
     - variable: "database_label"
       label: "database label"
       description: "Label to place database on the right environment."
